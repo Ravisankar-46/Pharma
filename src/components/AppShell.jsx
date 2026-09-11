@@ -1,11 +1,13 @@
 import { useState } from 'react'
 import { logOut } from '../services/pharmacyService'
+import AssistantPanel from './AssistantPanel'
 
 const navigation = [
   { path: '/dashboard', label: 'Dashboard', icon: 'grid' },
   { path: '/inventory', label: 'Inventory', icon: 'box' },
   { path: '/billing', label: 'Billing', icon: 'receipt' },
   { path: '/returns', label: 'Returns', icon: 'refresh' },
+  { path: '/qr', label: 'Public QR', icon: 'qr' },
 ]
 
 function NavIcon({ type }) {
@@ -14,11 +16,12 @@ function NavIcon({ type }) {
     box: <><path d="m4 7 8-4 8 4-8 4-8-4Z" /><path d="M4 7v10l8 4 8-4V7M12 11v10" /></>,
     receipt: <><path d="M5 3h14v18l-3-2-4 2-4-2-3 2V3Z" /><path d="M8 8h8M8 12h8M8 16h4" /></>,
     refresh: <><path d="M20 11a8 8 0 0 0-14.7-4L3 10" /><path d="M3 5v5h5M4 13a8 8 0 0 0 14.7 4L21 14" /><path d="M21 19v-5h-5" /></>,
+    qr: <><rect x="3" y="3" width="7" height="7" /><rect x="14" y="3" width="7" height="7" /><rect x="3" y="14" width="7" height="7" /><path d="M14 14h3v3h-3zM18 18h3v3h-3z" /></>,
   }
   return <svg className="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">{paths[type]}</svg>
 }
 
-export default function AppShell({ user, profile, route, navigate, returnCount = 0, children }) {
+export default function AppShell({ user, profile, route, navigate, returnCount = 0, assistantData, children }) {
   const [loggingOut, setLoggingOut] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
 
@@ -74,10 +77,10 @@ export default function AppShell({ user, profile, route, navigate, returnCount =
             <span className="windows-menu-icon" aria-hidden="true"><i /><i /><i /><i /></span>
           </button>
           <div className="breadcrumb">Pharmacy workspace <span>/</span> {navigation.find((item) => item.path === route)?.label || 'Dashboard'}</div>
-          <div className="topbar-user">
+          <div className="topbar-actions"><AssistantPanel {...assistantData} /><div className="topbar-user">
             <div className="avatar">{(profile?.name || user?.email || 'P').slice(0, 1).toUpperCase()}</div>
             <div><strong>{profile?.name || 'Pharmacy team'}</strong><span>{profile?.pharmacyName || 'PharmaLoop pharmacy'}</span></div>
-          </div>
+          </div></div>
         </header>
         <div className="page-content">{children}</div>
       </main>

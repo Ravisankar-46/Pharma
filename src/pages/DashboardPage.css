@@ -1,0 +1,25 @@
+.pharmacy-dashboard { gap: 34px; }
+.shop-identity { background: var(--paper); border: 1px solid var(--line); border-left: 4px solid var(--amber); border-radius: 8px; padding: 30px 34px; }
+.shop-identity h1 { font-size: clamp(2rem, 4vw, 3.3rem); }
+.shop-owner { color: var(--ink); font-size: .9rem; margin-top: 10px; }
+.shop-address, .shop-contact { color: var(--muted); font-size: .75rem; margin-top: 6px; }
+.shop-contact { color: var(--green); }
+.operations-section { padding-top: 4px; }
+.operations-heading { margin-bottom: 18px; }
+.operations-heading h2 { font-size: 1.5rem; }
+.operations-grid { display: grid; gap: 16px; grid-template-columns: repeat(3, 1fr); }
+.operation-card { border: 1px solid var(--line); border-radius: 8px; min-height: 245px; padding: 0; transition: border-color .2s, box-shadow .2s, transform .2s; }
+.operation-card:hover, .operation-card:focus-within { border-color: #a9c2b4; box-shadow: 0 12px 30px #242e2412; transform: translateY(-2px); }
+.operation-card.sage { background: #e9f1eb; }
+.operation-card.cream { background: #fbf4e6; }
+.operation-card.amber { background: #f8edd8; }
+.operation-card-link { align-items: flex-start; background: transparent; border: 0; color: var(--ink); display: flex; flex-direction: column; height: 100%; min-height: 245px; padding: 25px; text-align: left; width: 100%; }
+.operation-icon { color: var(--green); font-size: 1.55rem; line-height: 1; margin-bottom: 26px; }
+.operation-card.amber .operation-icon { color: #a36c20; }
+.operation-title { font-family: Fraunces, serif; font-size: 1.45rem; text-transform: uppercase; }
+.operation-description { color: var(--muted); font-size: .78rem; line-height: 1.55; margin-top: 9px; max-width: 230px; }
+.operation-action { color: var(--green); font-size: .74rem; font-weight: 700; margin-top: auto; }
+.operation-secondary { background: transparent; border: 0; color: var(--muted); font-size: .67rem; margin: -46px 25px 18px; padding: 5px 0; position: relative; }
+.operation-secondary:hover { color: var(--green); }
+@media (max-width: 900px) { .operations-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .pharmacy-dashboard { gap: 25px; } .shop-identity { padding: 24px; } .operations-grid { grid-template-columns: 1fr; } .operation-card, .operation-card-link { min-height: 210px; } }

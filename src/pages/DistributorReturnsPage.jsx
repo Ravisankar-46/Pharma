@@ -1,0 +1,10 @@
+function dateLabel(timestamp) {
+  if (!timestamp?.toDate) return 'Just now'
+  return timestamp.toDate().toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })
+}
+
+function statusLabel(status) { return status.replaceAll('_', ' ') }
+
+export default function DistributorReturnsPage({ returns, navigate }) {
+  return <div className="page-stack distributor-page"><div className="page-heading"><div><p className="eyebrow">Handoff ledger</p><h1>Incoming returns</h1><p className="page-subtitle">Review pharmacy-declared batches and record what physically arrives.</p></div><span className="live-label"><span className="status-dot" /> Live Firestore feed</span></div><section className="panel distributor-table-panel"><div className="panel-heading"><div><p className="eyebrow">Shared return records</p><h2>All pharmacy returns</h2></div><span className="count-pill">{returns.length} records</span></div><div className="distributor-table-wrap"><table className="distributor-table"><thead><tr><th>Medicine</th><th>Batch</th><th>Pharmacy</th><th>Expected</th><th>Requested</th><th>Status</th><th>Action</th></tr></thead><tbody>{returns.map((item) => <tr key={item.id}><td><strong>{item.medicineName}</strong><small>{item.strength || 'Strength not listed'}</small></td><td><code>{item.batchNumber}</code></td><td><small>{item.pharmacyId}</small></td><td><strong>{item.quantity}</strong><small>units</small></td><td><small>{dateLabel(item.requestedAt)}</small></td><td><span className={`distributor-status ${item.status.toLowerCase()}`}>{statusLabel(item.status)}</span></td><td>{item.status === 'RECEIVED' ? <span className="available-label">Verified</span> : <button type="button" className="table-action distributor-action" onClick={() => navigate(`/distributor/returns/${item.id}`)}>{item.status === 'DISPUTE' ? 'Review dispute' : 'Verify return'}</button>}</td></tr>)}</tbody></table>{!returns.length && <div className="empty-state"><span className="empty-icon">↘</span><strong>No pharmacy returns yet</strong><p>Return requests from pharmacies will appear in this ledger.</p></div>}</div></section></div>
+}

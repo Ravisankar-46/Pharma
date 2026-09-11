@@ -1,0 +1,25 @@
+.workflow-step { border-top: 3px solid var(--green); }
+.distributor-otp-panel { background: #f7f1df; border: 1px solid #ead9ae; border-radius: 7px; display: flex; flex-direction: column; gap: 8px; margin: 0 25px 25px; padding: 18px; }
+.distributor-otp-panel.verified { background: var(--green-soft); border-color: #c7dfd0; }
+.distributor-otp-panel strong { color: #996018; font-size: .8rem; }
+.distributor-otp-panel.verified strong { color: var(--green); }
+.distributor-otp-panel span, .distributor-otp-panel small { color: var(--muted); font-size: .72rem; line-height: 1.5; }
+.distributor-otp-code { color: var(--green-dark) !important; font-family: monospace; font-size: 2rem !important; letter-spacing: .2em; line-height: 1; margin: 5px 0; }
+.distributor-otp-panel .button { align-self: flex-start; margin-top: 5px; }
+.pickup-panel { border-top-color: var(--amber); }
+.received-panel { border-top-color: var(--green); }
+.pickup-summary { display: grid; gap: 16px; grid-template-columns: repeat(3, 1fr); padding: 6px 25px 25px; }
+.pickup-summary span { border-top: 1px solid var(--line); padding-top: 10px; }
+.pickup-summary small, .pickup-summary strong { display: block; }
+.pickup-summary small { color: var(--muted); font-size: .65rem; margin-top: 3px; }
+.pickup-summary span > small:first-child { font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.pickup-summary strong { font-size: .75rem; margin-top: 5px; }
+.handover-pending-state { background: #f7f1df; border: 1px solid #ead9ae; border-radius: 7px; color: var(--muted); display: flex; flex-direction: column; gap: 7px; margin: 6px 25px 25px; padding: 18px; }
+.handover-pending-state strong { color: #996018; font-size: .82rem; }
+.handover-pending-state span, .handover-pending-state small { font-size: .72rem; line-height: 1.5; }
+.handover-pending-state small { color: #8c692d; }
+.verification-result { margin: 0 25px 12px; }
+.verification-actions { display: flex; gap: 9px; }
+@media (max-width: 900px) { .pickup-summary { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .pickup-summary { grid-template-columns: 1fr; padding-left: 17px; padding-right: 17px; } .handover-pending-state, .verification-result { margin-left: 17px; margin-right: 17px; } .verification-actions { flex-direction: column; } .verification-actions .button { width: 100%; } }
+@media (max-width: 600px) { .distributor-otp-panel { margin-left: 17px; margin-right: 17px; } .distributor-otp-panel .button { align-self: stretch; } }
